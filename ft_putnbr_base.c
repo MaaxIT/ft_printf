@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:40:49 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/11/17 15:40:51 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/15 09:02:38 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,17 @@ static int	ft_check_valid(const char *base)
 static void	ft_print(int nb, const char *base, size_t len)
 {
 	size_t	nbr;
+	size_t	is_negative;
 
+	is_negative = 0;
 	if (nb < 0)
 	{
-		ft_putchar('-');
 		nb *= -1;
+		is_negative = 1;
 	}
 	nbr = nb;
+	if (is_negative == 1)
+		nbr = 4294967296 - nbr;
 	if (nbr >= len)
 		ft_print(nbr / len, base, len);
 	ft_putchar(base[nbr % len]);
