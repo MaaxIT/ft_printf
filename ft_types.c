@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:55:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/11/17 15:41:49 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/15 08:48:06 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,23 @@ size_t	ft_putunbr(unsigned int nb)
 	return (ft_count_digits(final));
 }
 
-/* TODO */
 /* Print the address of a pointer to the console */
 size_t	ft_putptr(const void *ptr)
 {
-	ptr = (const void *)ptr;
-	return (1);
+	unsigned long	ptr_long;
+	const char		*base;
+	char 			final[10];
+	size_t			index;
+
+	ptr_long = (unsigned long)ptr;
+	base = "0123456789abcdef";
+	index = 9;
+	final[index--] = '\0';
+	while ((ptr_long / 16) > 0)
+	{
+		final[index--] = base[(ptr_long % 16)];
+		ptr_long /= 16;
+	}
+	final[index] = base[(ptr_long % 16)];
+	return (ft_putstr("0x") + ft_putstr(final));
 }
