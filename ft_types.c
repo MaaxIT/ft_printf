@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:55:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/15 08:48:06 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:14:29 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ size_t	ft_putptr(const void *ptr)
 {
 	unsigned long	ptr_long;
 	const char		*base;
-	char 			final[10];
+	char			final[10];
 	size_t			index;
 
 	ptr_long = (unsigned long)ptr;
