@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:55:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/17 17:28:26 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:33:55 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_putstr(const char *str)
 	size_t	len;
 
 	if (!str)
-		return (0);
+		return (ft_putstr("(null)"));
 	len = 0;
 	while (str[len])
 		len++;
@@ -80,11 +80,12 @@ size_t	ft_putptr(unsigned long long ptr)
 
 	hexabase = "0123456789abcdef";
 	i = ft_count_udigits(ptr, 16);
-	final = malloc(i * sizeof(char));
+	final = malloc((i + 1) * sizeof(char));
 	if (!final)
 		return (0);
+	ft_bzero(final, i + 1);
 	i--;
-	while ((ptr / 16) > 0)
+	while ((ptr / 16) > 0 && i > 0)
 	{
 		final[i] = hexabase[(ptr % 16)];
 		ptr /= 16;
@@ -94,5 +95,7 @@ size_t	ft_putptr(unsigned long long ptr)
 	size = ft_putstr("0x");
 	size += ft_putstr(final);
 	free(final);
+	if (size == 2)
+		size += ft_putchar('0');
 	return (size);
 }

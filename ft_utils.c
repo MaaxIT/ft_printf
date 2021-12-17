@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:40:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/17 17:13:22 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 19:31:49 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,17 @@ size_t	ft_count_digits(long long int nb)
 		nb = -nb;
 	digits = ft_count_udigits((unsigned long long)nb, 10);
 	return (digits);
+}
+
+/* Erase the data in memory and replace it by \0 */
+void	ft_bzero(char *str, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		str[i] = '\0';
+		i++;
+	}
 }
