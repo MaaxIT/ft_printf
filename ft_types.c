@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:55:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/17 16:14:29 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:28:26 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ size_t	ft_putstr(const char *str)
 }
 
 /* Print a character to console */
-size_t	ft_putchar(const char c)
+size_t	ft_putchar(int c)
 {
-	if (!c)
-		return (0);
 	write(1, &c, 1);
 	return (1);
 }
@@ -73,22 +71,28 @@ size_t	ft_putunbr(unsigned int nb)
 }
 
 /* Print the address of a pointer to the console */
-size_t	ft_putptr(const void *ptr)
+size_t	ft_putptr(unsigned long long ptr)
 {
-	unsigned long	ptr_long;
-	const char		*base;
-	char			final[10];
-	size_t			index;
+	char				*hexabase;
+	char				*final;
+	size_t				i;
+	size_t				size;
 
-	ptr_long = (unsigned long)ptr;
-	base = "0123456789abcdef";
-	index = 9;
-	final[index--] = '\0';
-	while ((ptr_long / 16) > 0)
+	hexabase = "0123456789abcdef";
+	i = ft_count_udigits(ptr, 16);
+	final = malloc(i * sizeof(char));
+	if (!final)
+		return (0);
+	i--;
+	while ((ptr / 16) > 0)
 	{
-		final[index--] = base[(ptr_long % 16)];
-		ptr_long /= 16;
+		final[i] = hexabase[(ptr % 16)];
+		ptr /= 16;
+		i--;
 	}
-	final[index] = base[(ptr_long % 16)];
-	return (ft_putstr("0x") + ft_putstr(final));
+	final[i] = hexabase[(ptr % 16)];
+	size = ft_putstr("0x");
+	size += ft_putstr(final);
+	free(final);
+	return (size);
 }
