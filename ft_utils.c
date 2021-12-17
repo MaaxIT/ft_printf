@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:40:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/17 19:31:49 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 20:03:38 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_count_udigits(unsigned long long nb, int base)
 	size_t	digits;
 
 	digits = 0;
+	if (nb == 0)
+		return (1);
 	while (nb > 0)
 	{
 		digits++;
@@ -27,13 +29,17 @@ size_t	ft_count_udigits(unsigned long long nb, int base)
 }
 
 /* Get the amount of digits in a number */
-size_t	ft_count_digits(long long int nb)
+size_t	ft_count_digits(long long int nb, int base)
 {
 	size_t	digits;
 
+	digits = 0;
 	if (nb < 0)
+	{
 		nb = -nb;
-	digits = ft_count_udigits((unsigned long long)nb, 10);
+		digits++;
+	}
+	digits += ft_count_udigits((unsigned long long)nb, base);
 	return (digits);
 }
 

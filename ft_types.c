@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:55:58 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/17 19:33:55 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 20:05:15 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ size_t	ft_putchar(int c)
 size_t	ft_putnbr(int nb)
 {
 	long long int	final;
+	int				neg;
 
+	neg = 1;
 	final = nb;
 	if (final < 0)
 	{
 		final *= -1;
+		neg *= -1;
 		ft_putchar('-');
 	}
 	if (final > 9)
@@ -51,7 +54,7 @@ size_t	ft_putnbr(int nb)
 	}
 	else
 		ft_putchar((final + '0'));
-	return (ft_count_digits(final));
+	return (ft_count_digits(final * neg, 10));
 }
 
 /* Print an unsigned int to console */
@@ -67,7 +70,7 @@ size_t	ft_putunbr(unsigned int nb)
 	}
 	else
 		ft_putchar((final + '0'));
-	return (ft_count_digits(final));
+	return (ft_count_digits(final, 10));
 }
 
 /* Print the address of a pointer to the console */

@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:40:49 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/12/17 17:02:07 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 20:35:27 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,26 @@ static int	ft_check_valid(const char *base)
 }
 
 /* Recursively used to print a number in a specific base */
-static void	ft_print(int nb, const char *base, size_t len)
+static size_t	ft_print(unsigned int nb, const char *base, size_t len)
 {
-	size_t	nbr;
-	size_t	is_negative;
+	size_t	size;
 
-	is_negative = 0;
-	if (nb < 0)
-	{
-		nb *= -1;
-		is_negative = 1;
-	}
-	nbr = nb;
-	if (is_negative == 1)
-		nbr = 4294967296 - nbr;
-	if (nbr >= len)
-		ft_print(nbr / len, base, len);
-	ft_putchar(base[nbr % len]);
+	size = 0;
+	if (nb >= len)
+		size += ft_print(nb / len, base, len);
+	size += ft_putchar(base[nb % len]);
+	return (size);
 }
 
 /* Print a number in a specific base */
-size_t	ft_putnbr_base(int nb, char *base)
+size_t	ft_putnbr_base(unsigned int nb, char *base)
 {
 	size_t	len;
+	size_t	size;
 
 	len = ft_check_valid(base);
 	if (!len)
 		return (0);
-	ft_print(nb, base, len);
-	return (ft_count_digits((long long int)nb));
+	size = ft_print(nb, base, len);
+	return (size);
 }
