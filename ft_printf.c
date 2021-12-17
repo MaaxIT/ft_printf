@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:29:42 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/11/17 15:41:17 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:27:49 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_print_arg(const char perc_type, va_list args)
 	else if (perc_type == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (perc_type == 'p')
-		return (ft_putptr(va_arg(args, void *)));
+		return (ft_putptr(va_arg(args, unsigned long long)));
 	else if (perc_type == 'd' || perc_type == 'i')
 		return (ft_putnbr(va_arg(args, int)));
 	else if (perc_type == 'u')
