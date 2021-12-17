@@ -6,7 +6,7 @@
 /*   By: mpeharpr <mpeharpr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:57:39 by mpeharpr          #+#    #+#             */
-/*   Updated: 2021/11/17 15:35:20 by mpeharpr         ###   ########.fr       */
+/*   Updated: 2021/12/17 16:16:45 by mpeharpr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
+
+/* ft_printf.c */
+int	ft_printf(const char *str, ...);
 
 /* ft_types.c */
 size_t	ft_putstr(const char *str);
